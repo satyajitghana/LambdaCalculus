@@ -1,0 +1,1147 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Lambda Calculus with the Birds !}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+            \makeatletter
+\@addtoreset{section}{part}
+\def\@part[#1]#2{%
+    \ifnum \c@secnumdepth >\m@ne
+      \refstepcounter{part}%
+      \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+    \else
+      \addcontentsline{toc}{part}{#1}%
+    \fi
+    {\parindent \z@ \raggedright
+     \interlinepenalty \@M
+     \normalfont\centering
+     \ifnum \c@secnumdepth >\m@ne
+       \LARGE\bfseries \partname\nobreakspace\thepart
+       \par\nobreak
+     \fi
+     \huge \bfseries #2%
+     \markboth{}{}\par}%
+    \nobreak
+    \vskip 3ex
+    \@afterheading}
+\renewcommand\partname{Topic}
+\makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    \author{Satyajit Ghana}
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+   % \section{Lambda Calculus with Birds}\label{lambda-calculus-with-birds}
+\part{Introduction to the Birds}
+    \section{Idiot}\label{idiot}
+
+    The Identity \[ \lambda a.a \]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n+nx}{I} \PY{o}{=} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{a}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} [Function: I]
+\end{Verbatim}
+            
+    \section{Mocking Bird}\label{mocking-bird}
+
+    The Self Applicator \[ \lambda f. f f \]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n+nx}{M} \PY{o}{=} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{f}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} [Function: M]
+\end{Verbatim}
+            
+    \section{Kerstrel}\label{kerstrel}
+
+    The Truth \[ \lambda a b . a \]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n+nx}{K} \PY{o}{=} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{b} \PY{p}{=\PYZgt{}} \PY{n+nx}{a}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} [Function: K]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n+nx}{K}\PY{p}{.}\PY{n+nx}{inspect} \PY{o}{=} \PY{p}{(}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{l+s+s1}{\PYZsq{}T / K\PYZsq{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} [Function]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n+nx}{K}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} T / K
+\end{Verbatim}
+            
+    \section{Kite}\label{kite}
+
+    The False \[ \lambda a b.b = \text{K I} = \text{C K}\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n+nx}{KI} \PY{o}{=} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{b} \PY{p}{=\PYZgt{}} \PY{n+nx}{b}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} [Function: KI]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n+nx}{KI}\PY{p}{.}\PY{n+nx}{inspect} \PY{o}{=} \PY{p}{(}\PY{p}{)} \PY{p}{=\PYZgt{}} \PY{l+s+s1}{\PYZsq{}F / KI\PYZsq{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} [Function]
+\end{Verbatim}
+            
+    \section{Cardinal}\label{cardinal}
+
+    The Reverse \[ \lambda f a b.  fb a \]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n+nx}{C} \PY{o}{=} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{b} \PY{p}{=\PYZgt{}} \PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{b}\PY{p}{)}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} [Function: C]
+\end{Verbatim}
+            
+    \section{Blue Bird}\label{blue-bird}
+
+    The Composition \[ \lambda f g a. f(g a) \]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n+nx}{B} \PY{o}{=} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{g} \PY{p}{=\PYZgt{}} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{g}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} [Function: B]
+\end{Verbatim}
+            
+    \section{Thrush}\label{thrush}
+
+    The Flipper \[ \lambda af. fa  = \text{C I}\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n+nx}{T} \PY{o}{=} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} [Function: T]
+\end{Verbatim}
+            
+    \section{Vireo}\label{vireo}
+
+    The Smallest Data Structure \[ \lambda abf. fab = \text{B C T}\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n+nx}{V} \PY{o}{=} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{b} \PY{p}{=\PYZgt{}} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{(}\PY{n+nx}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} [Function: V]
+\end{Verbatim}
+            
+    \section{Black Bird}\label{black-bird}
+
+    Blue Bird for a function that takes two arguments\\
+It's the composition of composition of composition
+\[ \lambda fgab. f(gab) = \text{B B B}\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n+nx}{B1} \PY{o}{=} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{g} \PY{p}{=\PYZgt{}} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{b} \PY{p}{=\PYZgt{}} \PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{g}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{(}\PY{n+nx}{b}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} [Function: B1]
+\end{Verbatim}
+
+    \part{Birds ! Birds ! Birds !}
+    \section{Fun with these Birds !}\label{fun-with-these-birds}
+    %\chapter{Fun with these Birds}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n+nx}{C}\PY{p}{(}\PY{n+nx}{K}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}T\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}F\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} 'F'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n+nx}{C}\PY{p}{(}\PY{n+nx}{KI}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}T\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}F\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} 'T'
+\end{Verbatim}
+            
+    Cardinal of Kerstrel is Kite\\
+Cardinal of Kite is Kerstrel
+
+    \section{Church Encodings}\label{church-encodings}
+
+    \subsection{Booleans}\label{booleans}
+
+    $ \text{TRUE} = \lambda a b. a = \text{K}$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n+nx}{TRUE} \PY{o}{=} \PY{n+nx}{K}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} T / K
+\end{Verbatim}
+            
+    $ \text{FALSE} = \lambda ab. b = \text{KI} = \text{CK}$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n+nx}{FALSE} \PY{o}{=} \PY{n+nx}{KI}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} F / KI
+\end{Verbatim}
+            
+    $ \text{NOT} = \lambda p. pFT = \text{C}$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n+nx}{NOT} \PY{o}{=} \PY{n+nx}{C}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} [Function: C]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n+nx}{NOT}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}T\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}F\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} 'F'
+\end{Verbatim}
+            
+    $ \text{AND} = \lambda p q. pqF = \lambda p q . pqp$
+
+    if p is false and it selects false, then p can select itself
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n+nx}{AND} \PY{o}{=} \PY{n+nx}{p} \PY{p}{=\PYZgt{}} \PY{n+nx}{q} \PY{p}{=\PYZgt{}} \PY{n+nx}{p}\PY{p}{(}\PY{n+nx}{q}\PY{p}{)}\PY{p}{(}\PY{n+nx}{p}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} [Function: AND]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n+nx}{AND}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} T / K
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n+nx}{AND}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} F / KI
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n+nx}{AND}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} F / KI
+\end{Verbatim}
+            
+    $ \text{OR} = \lambda p q. pTq = \lambda p q. p p q = \lambda p q. M q
+= \text{M}$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n+nx}{OR} \PY{o}{=} \PY{n+nx}{p} \PY{p}{=\PYZgt{}} \PY{n+nx}{q} \PY{p}{=\PYZgt{}} \PY{n+nx}{M}\PY{p}{(}\PY{n+nx}{p}\PY{p}{)}\PY{p}{(}\PY{n+nx}{q}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} [Function: OR]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n+nx}{OR}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:} T / K
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n+nx}{OR}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} T / K
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n+nx}{OR}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} F / KI
+\end{Verbatim}
+            
+    \((\lambda pq.ppq)xy = xxy\)\\
+\(M x y = xxy\)\\
+\(\text{OR} = \text{M}\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n+nx}{M}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} T / K
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n+nx}{M}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} T / K
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n+nx}{M}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:} F / KI
+\end{Verbatim}
+            
+    \(\text{BEQ} = \lambda pq.pq(\text{NOT}q)\)
+
+    This is also the \texttt{XNOR} or the Equality
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n+nx}{BEQ} \PY{o}{=} \PY{n+nx}{p} \PY{p}{=\PYZgt{}} \PY{n+nx}{q} \PY{p}{=\PYZgt{}} \PY{n+nx}{p}\PY{p}{(}\PY{n+nx}{q}\PY{p}{)}\PY{p}{(}\PY{n+nx}{NOT}\PY{p}{(}\PY{n+nx}{q}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} [Function: BEQ]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n+nx}{BEQ}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}T\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}F\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}31}]:} 'T'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n+nx}{BEQ}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}T\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}F\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:} 'T'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n+nx}{BEQ}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}T\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}F\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} 'F'
+\end{Verbatim}
+            
+    \subsection{Numerals}\label{numerals}
+
+    \(\text{ZERO} = \lambda fa.a\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n+nx}{ZERO} \PY{o}{=} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{a}  \PY{p}{=\PYZgt{}} \PY{n+nx}{a}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:} [Function: ZERO]
+\end{Verbatim}
+            
+    \(\text{ONCE} = \lambda f a . f a\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n+nx}{ONCE} \PY{o}{=} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:} [Function: ONCE]
+\end{Verbatim}
+            
+    $ \text{TWICE} = \lambda f a . f(f a) $
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n+nx}{TWICE} \PY{o}{=} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}36}]:} [Function: TWICE]
+\end{Verbatim}
+            
+    $ \text{THRICE} = \lambda fa.f(f(f a) $
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n+nx}{THRICE} \PY{o}{=} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}37}]:} [Function: THRICE]
+\end{Verbatim}
+            
+    $ \text{FOURFOLD} = \lambda f a. f(f(f(f a))) $
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n+nx}{FOURFOLD} \PY{o}{=} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{a} \PY{p}{=\PYZgt{}} \PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{a}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}38}]:} [Function: FOURFOLD]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n+nx}{N0} \PY{o}{=} \PY{n+nx}{ZERO}
+         \PY{n+nx}{N1} \PY{o}{=} \PY{n+nx}{ONCE}
+         \PY{n+nx}{N2} \PY{o}{=} \PY{n+nx}{TWICE}
+         \PY{n+nx}{N3} \PY{o}{=} \PY{n+nx}{THRICE}
+         \PY{n+nx}{N4} \PY{o}{=} \PY{n+nx}{FOURFOLD}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}39}]:} [Function: FOURFOLD]
+\end{Verbatim}
+            
+    $ \text{SUCC} = \lambda n f a. f(nfa) = \lambda n f.\text{B}f(nf) $
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n+nx}{SUCC} \PY{o}{=} \PY{n+nx}{n} \PY{p}{=\PYZgt{}} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{x} \PY{p}{=\PYZgt{}} \PY{n+nx}{f}\PY{p}{(}\PY{n+nx}{n}\PY{p}{(}\PY{n+nx}{f}\PY{p}{)}\PY{p}{(}\PY{n+nx}{x}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}40}]:} [Function: SUCC]
+\end{Verbatim}
+            
+    This is the same as function composition, why not use the Blue Bird ?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n+nx}{SUCC} \PY{o}{=} \PY{n+nx}{n} \PY{p}{=\PYZgt{}} \PY{n+nx}{f} \PY{p}{=\PYZgt{}} \PY{n+nx}{B}\PY{p}{(}\PY{n+nx}{f}\PY{p}{)}\PY{p}{(}\PY{n+nx}{n}\PY{p}{(}\PY{n+nx}{f}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}41}]:} [Function: SUCC]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n+nx}{SUCC}\PY{p}{(}\PY{n+nx}{THRICE}\PY{p}{)}\PY{p}{(}\PY{n+nx}{x} \PY{p}{=\PYZgt{}} \PY{n+nx}{x} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}42}]:} 4
+\end{Verbatim}
+            
+    $ \text{ADD} = \lambda n k. n \text{ SUCC } k $
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n+nx}{ADD} \PY{o}{=} \PY{n+nx}{n} \PY{p}{=\PYZgt{}} \PY{n+nx}{k} \PY{p}{=\PYZgt{}} \PY{n+nx}{n}\PY{p}{(}\PY{n+nx}{SUCC}\PY{p}{)}\PY{p}{(}\PY{n+nx}{k}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}43}]:} [Function: ADD]
+\end{Verbatim}
+            
+    Read it as n times SUCC, applied to k, same as
+\texttt{SUCC(SUCC(SUCC(k)))} where SUCC is n times this example was 3
+added to k
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n+nx}{ADD}\PY{p}{(}\PY{n+nx}{N3}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N2}\PY{p}{)}\PY{p}{(}\PY{n+nx}{x} \PY{p}{=\PYZgt{}} \PY{n+nx}{x} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:} 5
+\end{Verbatim}
+            
+    $ \text{MULT} = \lambda n k f. n(kf) = \lambda n k. \text{B}nk =
+\text{B}$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n+nx}{MULT} \PY{o}{=} \PY{n+nx}{n} \PY{p}{=\PYZgt{}} \PY{n+nx}{k} \PY{p}{=\PYZgt{}} \PY{n+nx}{B}\PY{p}{(}\PY{n+nx}{n}\PY{p}{)}\PY{p}{(}\PY{n+nx}{k}\PY{p}{)}
+         \PY{n+nx}{MULT} \PY{o}{=} \PY{n+nx}{B}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}45}]:} [Function: B]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n+nx}{MULT}\PY{p}{(}\PY{n+nx}{N3}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N2}\PY{p}{)}\PY{p}{(}\PY{n+nx}{x} \PY{p}{=\PYZgt{}} \PY{n+nx}{x} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} 6
+\end{Verbatim}
+            
+    $ \text{POW} = \lambda n k. k \text{ MULT }n = \text{C I} = \text{T}$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{n+nx}{POW} \PY{o}{=} \PY{n+nx}{T}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}47}]:} [Function: T]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n+nx}{POW}\PY{p}{(}\PY{n+nx}{N3}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N2}\PY{p}{)}\PY{p}{(}\PY{n+nx}{x} \PY{p}{=\PYZgt{}} \PY{n+nx}{x} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}48}]:} 9
+\end{Verbatim}
+            
+    $ \text{IS0} = \lambda n. n (K F) T $
+
+    KF always gives a False, Kerstrel of False
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{n+nx}{IS0} \PY{o}{=} \PY{n+nx}{n} \PY{p}{=\PYZgt{}} \PY{n+nx}{n}\PY{p}{(}\PY{n+nx}{K}\PY{p}{(}\PY{n+nx}{FALSE}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{n+nx}{TRUE}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}49}]:} [Function: IS0]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n+nx}{IS0}\PY{p}{(}\PY{n+nx}{N0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}50}]:} T / K
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n+nx}{IS0}\PY{p}{(}\PY{n+nx}{N1}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}51}]:} F / KI
+\end{Verbatim}
+            
+    $ \text{PRED} = \lambda n.
+n(\lambda g.\text{IS0}(g\text{N1})\text{I}(\text{B SUCC }
+g))(\text{K N0})\text{N0}$
+
+    $ \text{V I M} $
+
+    Vireo is the smallest data structure, you box in the two arguments like
+f(a)(b) and then whenever you want a value back you send in a function
+to recieve eithe a or b
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n+nx}{vim} \PY{o}{=} \PY{n+nx}{V}\PY{p}{(}\PY{n+nx}{I}\PY{p}{)}\PY{p}{(}\PY{n+nx}{M}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}52}]:} [Function]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n+nx}{vim}\PY{p}{(}\PY{n+nx}{K}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}53}]:} [Function: I]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n+nx}{vim}\PY{p}{(}\PY{n+nx}{C}\PY{p}{(}\PY{n+nx}{K}\PY{p}{)}\PY{p}{)} \PY{c+c1}{// C(K) = KI}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}54}]:} [Function: M]
+\end{Verbatim}
+            
+    $ \text{PAIR} = \text{V} $
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n+nx}{PAIR} \PY{o}{=} \PY{n+nx}{V}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}55}]:} [Function: V]
+\end{Verbatim}
+            
+    $ \text{FST} = \lambda p. p K $
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n+nx}{FST} \PY{o}{=} \PY{n+nx}{p} \PY{p}{=\PYZgt{}} \PY{n+nx}{p}\PY{p}{(}\PY{n+nx}{K}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}56}]:} [Function: FST]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n+nx}{FST}\PY{p}{(}\PY{n+nx}{vim}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}57}]:} [Function: I]
+\end{Verbatim}
+            
+    $ \text{SND} = \lambda p. p(KI) $
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{n+nx}{SND} \PY{o}{=} \PY{n+nx}{p} \PY{p}{=\PYZgt{}} \PY{n+nx}{p}\PY{p}{(}\PY{n+nx}{KI}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}58}]:} [Function: SND]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n+nx}{SND}\PY{p}{(}\PY{n+nx}{vim}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}59}]:} [Function: M]
+\end{Verbatim}
+            
+    $ \text{PHI} =
+\lambda p.\text{V}(\text{SND }p)(\text{SUCC }(\text{SND})p) $
+
+    copy 2nd to 1st, and increment 2nd
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{n+nx}{PHI} \PY{o}{=} \PY{n+nx}{p} \PY{p}{=\PYZgt{}} \PY{n+nx}{V}\PY{p}{(}\PY{n+nx}{SND}\PY{p}{(}\PY{n+nx}{p}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{n+nx}{SUCC}\PY{p}{(}\PY{n+nx}{SND}\PY{p}{(}\PY{n+nx}{p}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}60}]:} [Function: PHI]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{n+nx}{SND}\PY{p}{(}\PY{n+nx}{PHI}\PY{p}{(}\PY{n+nx}{V}\PY{p}{(}\PY{n+nx}{M}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N3}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{n+nx}{x} \PY{p}{=\PYZgt{}} \PY{n+nx}{x} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}61}]:} 4
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{n+nx}{FST}\PY{p}{(}\PY{n+nx}{PHI}\PY{p}{(}\PY{n+nx}{V}\PY{p}{(}\PY{n+nx}{M}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N3}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{n+nx}{x} \PY{p}{=\PYZgt{}} \PY{n+nx}{x} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}62}]:} 3
+\end{Verbatim}
+            
+    \texttt{N0\ PHI(N0,\ N0)\ =\ (N0,\ N0)}\\
+\texttt{N1\ PHI(N0,\ N0)\ =\ (N0,\ N1)}\\
+\texttt{N2\ PHI(N0,\ N0)\ =\ (N1,\ N2)}\\
+\texttt{...}\\
+\texttt{N8\ PHI(N0,\ N0)\ =\ (N7,\ N8)}
+
+    Holy Cow !, you got the predecessor working !
+
+    $ \text{PRED} = \lambda n = \text{FST }(n \Phi (\text{PAIR }
+\text{ZERO } \text{ZERO}))$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{n+nx}{PRED} \PY{o}{=} \PY{n+nx}{n} \PY{p}{=\PYZgt{}} \PY{n+nx}{FST}\PY{p}{(}\PY{n+nx}{n}\PY{p}{(}\PY{n+nx}{PHI}\PY{p}{)}\PY{p}{(}\PY{n+nx}{V}\PY{p}{(}\PY{n+nx}{N0}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}63}]:} [Function: PRED]
+\end{Verbatim}
+            
+    FIRST of "n" application of PHI to PAIR of ZERO, ZERO
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n+nx}{PRED}\PY{p}{(}\PY{n+nx}{N3}\PY{p}{)}\PY{p}{(}\PY{n+nx}{x} \PY{p}{=\PYZgt{}} \PY{n+nx}{x} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}64}]:} 2
+\end{Verbatim}
+            
+    $ \text{SUB} = \lambda nk. k \text{ PRED } n $
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}65}]:} \PY{n+nx}{SUB} \PY{o}{=} \PY{n+nx}{n} \PY{p}{=\PYZgt{}} \PY{n+nx}{k} \PY{p}{=\PYZgt{}} \PY{n+nx}{k}\PY{p}{(}\PY{n+nx}{PRED}\PY{p}{)}\PY{p}{(}\PY{n+nx}{n}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}65}]:} [Function: SUB]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}66}]:} \PY{n+nx}{SUB}\PY{p}{(}\PY{n+nx}{N4}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N3}\PY{p}{)}\PY{p}{(}\PY{n+nx}{x} \PY{p}{=\PYZgt{}} \PY{n+nx}{x} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}66}]:} 1
+\end{Verbatim}
+            
+    $ \text{LEQ} = \lambda nk.\text{IS0}(\text{SUB }nk) $
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}67}]:} \PY{n+nx}{LEQ} \PY{o}{=} \PY{n+nx}{n} \PY{p}{=\PYZgt{}} \PY{n+nx}{k} \PY{p}{=\PYZgt{}} \PY{n+nx}{IS0}\PY{p}{(}\PY{n+nx}{SUB}\PY{p}{(}\PY{n+nx}{n}\PY{p}{)}\PY{p}{(}\PY{n+nx}{k}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}67}]:} [Function: LEQ]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}68}]:} \PY{n+nx}{LEQ}\PY{p}{(}\PY{n+nx}{N3}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N4}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}68}]:} T / K
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}69}]:} \PY{n+nx}{LEQ}\PY{p}{(}\PY{n+nx}{N4}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N3}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}69}]:} F / KI
+\end{Verbatim}
+            
+    $ \text{EQ} = \lambda nk. \text{AND}(\text{LEQ}nk)(\text{LEQ}kn)$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}70}]:} \PY{n+nx}{EQ} \PY{o}{=} \PY{n+nx}{n} \PY{p}{=\PYZgt{}} \PY{n+nx}{k} \PY{p}{=\PYZgt{}} \PY{n+nx}{AND}\PY{p}{(}\PY{n+nx}{LEQ}\PY{p}{(}\PY{n+nx}{n}\PY{p}{)}\PY{p}{(}\PY{n+nx}{k}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{n+nx}{LEQ}\PY{p}{(}\PY{n+nx}{k}\PY{p}{)}\PY{p}{(}\PY{n+nx}{n}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}70}]:} [Function: EQ]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}71}]:} \PY{n+nx}{EQ}\PY{p}{(}\PY{n+nx}{N0}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}71}]:} T / K
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}72}]:} \PY{n+nx}{EQ}\PY{p}{(}\PY{n+nx}{N1}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}72}]:} F / KI
+\end{Verbatim}
+            
+    $ \text{GT} = \lambda nk.\text{NOT}(\text{LEQ }nk) = \text{B1 NOT LEQ }
+$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}73}]:} \PY{n+nx}{GT} \PY{o}{=} \PY{n+nx}{n} \PY{p}{=\PYZgt{}} \PY{n+nx}{k} \PY{p}{=\PYZgt{}} \PY{n+nx}{NOT}\PY{p}{(}\PY{n+nx}{LEQ}\PY{p}{(}\PY{n+nx}{n}\PY{p}{)}\PY{p}{(}\PY{n+nx}{k}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}73}]:} [Function: GT]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}74}]:} \PY{n+nx}{GT} \PY{o}{=} \PY{n+nx}{B1}\PY{p}{(}\PY{n+nx}{NOT}\PY{p}{)}\PY{p}{(}\PY{n+nx}{LEQ}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}74}]:} [Function]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}75}]:} \PY{n+nx}{GT}\PY{p}{(}\PY{n+nx}{N1}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N0}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}T\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}F\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}75}]:} 'T'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}76}]:} \PY{n+nx}{GT}\PY{p}{(}\PY{n+nx}{N0}\PY{p}{)}\PY{p}{(}\PY{n+nx}{N0}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}T\PYZsq{}}\PY{p}{)}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}F\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}76}]:} 'F'
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
